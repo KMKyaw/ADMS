@@ -7,9 +7,9 @@ export default function Login(){
   
     const handleTabClick = (tab) => {
       setActiveTab(tab);
-      navigate(`/${tab}`);
+      navigate(`/${tab}/dashboard`);
     };
-    
+
     return(
         <div>
             <div className="bg-navbar h-screen">

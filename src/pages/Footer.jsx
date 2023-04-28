@@ -2,7 +2,7 @@ export default function Footer(){
     return(
         
     <footer class="bg-navbar shadow dark:bg-gray-900">
-        <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
+        <div class="w-full mx-auto p-6 md:py-8">
             <div class="sm:flex sm:items-center sm:justify-between">
                 <a href="#" className="flex items-center md:pb-0 pb-4">
                     <img src="../Logo.png" className="h-8 mr-3" alt="Flowbite Logo" />
@@ -24,7 +24,7 @@ export default function Footer(){
                 </ul>
             </div>
             <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-            <span class="block text-sm text-gray-50 sm:text-center dark:text-gray-400">© 2023 <span class="hover:underline">Adminstration Data Management System&trade;</span>. All Rights Reserved.</span>
+            <span class="text-sm text-gray-50 sm:text-center">© 2023 <span class="hover:underline">Adminstration Data Management System&trade;</span></span>
         </div>
     </footer>
 

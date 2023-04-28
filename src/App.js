@@ -7,9 +7,11 @@ import {
 
 import Login from "./pages/Login"
 import Dashboard from "./pages/Dashboard"
-import Course from "./pages/Course"
+import Course from "./pages/Courses/Course"
 import Student from './pages/Student'
 import Navbar from './layouts/Navbar'
+import UpdateCoures from './pages/Courses/UpdateCourse'
+import AddCourse from './pages/Courses/AddCourse'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -18,8 +20,13 @@ const router = createBrowserRouter(
       <Route path='navbar' element={<Navbar/>}>
         <Route path='dashboard' element={<Dashboard/>}/>
         <Route path='course' element={<Course/>}/>
+        <Route path='course'>
+          <Route path='update' element={<UpdateCoures/>}/>
+          <Route path='add' element={<AddCourse/>}/>
+        </Route>
         <Route path='student' element={<Student/>}/>
       </Route>
+        
     </Route>
   )
 )

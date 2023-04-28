@@ -1,8 +1,7 @@
 import React from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, BarElement, CategoryScale, LinearScale} from 'chart.js';
 import { Bar, Doughnut } from 'react-chartjs-2';
-import { black } from 'tailwindcss/colors';
-import CourseTable from './CourseTable';
+import CourseTable from './Courses/CourseTable';
 import StudentTable from './StudentTable';
 import Footer from './Footer';
 ChartJS.register(ArcElement, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
@@ -193,7 +192,7 @@ export default function Dashboard() {
           </div>
         </div>
 
-        <div className='pt-4'>
+        <div className='pt-8'>
           <Footer/>
         </div>
       </div>

@@ -1,10 +1,31 @@
-import { useNavigate} from "react-router-dom";
-
+import { NavLink, useNavigate} from "react-router-dom";
+import { useState } from "react";
 export default function UpdateCoures(){
     const navigate = useNavigate();
     const handleTabClick = () => {
         navigate(`/navbar/course`);
       };
+    
+    const [courseID, setCourseID] = useState("CSC105");
+    const [courseTitle, setCourseTitle] = useState("Introduction to Web Development");
+    const [courseDesc, setCourseDesc] = useState("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
+    const [maxStudents, setMaxStudents] = useState(46);
+    const [lecturer, setLecturer] = useState("Prof. John Doe");
+
+    const handleReviewTabClick = () => {
+        if(
+        courseID !== "CSC105" ||
+        courseTitle !== "Introduction to Web Development" ||
+        courseDesc !== "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." ||
+        maxStudents !== 46 ||
+        lecturer !== "Prof. John Doe"
+        ){
+            navigate(`/navbar/course/review`);
+        }else{
+            window.alert("No changes detected.")
+        }
+       
+    };
     return(
         <div className='pt-7 px-4'>
             <span className="p-2 md:text-4xl text-2xl font-semibold whitespace-nowrap text-navbar">Update Course</span>
@@ -14,37 +35,37 @@ export default function UpdateCoures(){
                         <div class="grid gap-6 mb-6 md:grid-cols-2">
                             <div className="px-4 pt-4">
                                 <label for="first_name" class="block mb-2 text-[20px] font-medium whitespace-nowrap text-navbar">Course ID</label>
-                                <input type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="CSC/GEN..." defaultValue="CSC105"/>
+                                <input onChange={(e) => setCourseID(e.target.value)} type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="CSC/GEN..." defaultValue="CSC105"/>
                             </div>
                             <div className="px-4 md:pt-4">
                                 <label for="first_name" class="block mb-2 text-[20px] font-medium whitespace-nowrap text-navbar">Course Title</label>
-                                <input type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Title..." defaultValue="Introduction to Web Development" required/>
+                                <input onChange={(e) => setCourseTitle(e.target.value)} type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Title..." defaultValue="Introduction to Web Development" required/>
                             </div>
                         </div>
                         <div class="mb-6">
                             <div className="px-4 md:pt-4">
                                 <label for="first_name" class="block mb-2 text-[20px] font-medium whitespace-nowrap text-navbar">Course Description</label>
-                                <input type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Description..." defaultValue={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."} required/>
+                                <input onChange={(e) => setCourseDesc(e.target.value)} type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Description..." defaultValue={"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."} required/>
                             </div>
                         </div> 
                         <div class="mb-6">
                             <div className="px-4 md:pt-4">
                                 <label for="first_name" class="block mb-2 text-[20px] font-medium whitespace-nowrap text-navbar">Maximum Number of Student</label>
-                                <input type="number" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter Number" defaultValue={"46"} required/>
+                                <input onChange={(e) => setMaxStudents(e.target.value)} type="number" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter Number" defaultValue={"46"} required/>
                             </div>
                         </div>  
                         <div class="mb-6">
                             <div className="px-4 md:pt-4">
                                 <label for="first_name" class="block mb-2 text-[20px] font-medium whitespace-nowrap text-navbar">Lecturer</label>
-                                <input type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Name..." defaultValue={"Prof. John Doe"} required/>
+                                <input onChange={(e) => setLecturer(e.target.value)} type="text" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Name..." defaultValue={"Prof. John Doe"} required/>
                             </div>
                         </div>
                         <hr class="h-[3px] mt-8 mb-4 bg-navbar border-0"/>
                         <div className="pb-3 pr-1 self-end">
                             <button onClick={handleTabClick} className="absolute left-1 underline text-navbar font-medium rounded-md px-5 py-2.5 mr-2 mb-2">CANCEL</button>
                             <div>
-                            <button type="submit" className="shadow-md border-2 text-white bg-blue-800 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-md px-5 py-2.5 mr-2 mb-2 focus:outline-none "><span>RESET</span></button>
-                            <button type="submit" className="shadow-md border-2 text-white bg-blue-800 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-md px-3 py-2.5 mr-2 mb-2 focus:outline-none "><span>REVIEW</span></button>
+                            <button type="reset" className="shadow-md border-2 text-white bg-blue-800 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-md px-5 py-2.5 mr-2 mb-2 focus:outline-none "><span>RESET</span></button>
+                            <button onClick={handleReviewTabClick} type="submit" className="shadow-md border-2 text-white bg-blue-800 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-md px-3 py-2.5 mr-2 mb-2 focus:outline-none "><span>REVIEW</span></button>
                             </div>
                         </div>
                     </form>

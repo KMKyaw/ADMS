@@ -2,7 +2,7 @@ import React from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, BarElement, CategoryScale, LinearScale} from 'chart.js';
 import { Bar, Doughnut } from 'react-chartjs-2';
 import CourseTable from './Courses/CourseTable';
-import StudentTable from './StudentTable';
+import StudentTable from './Students/StudentTable';
 import Footer from './Footer';
 ChartJS.register(ArcElement, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
 

@@ -34,14 +34,14 @@ export default function CoursePageTable(){
                             <div className={`${isOpen ? "block" : "hidden"}`}>
                                 <div className='absolute right-[10%] border-2 bg-navbar'>
                                     <div className='grid grid-rows-3 text-gray-50 font-normal md:text-lg text-base'>
-                                        <div className='border-b-2 px-3 py-1 border-gray-50'>
+                                        <div className='border-b-2 px-5 py-1 border-gray-50'>
                                             <NavLink to="update" className='hover:text-blue-400'>Update</NavLink>
                                         </div>
-                                        <div className='border-b-2 px-3 py-1 border-gray-50'>
-                                            <span>Delete</span>
+                                        <div className='border-b-2 px-5 py-1 border-gray-50'>
+                                            <NavLink to="delete" className='hover:text-blue-400'>Delete</NavLink>
                                         </div>
-                                        <div className='border-b-2 px-3 py-1 border-gray-50'>
-                                            <span>View</span>
+                                        <div className='border-b-2 px-5 py-1 border-gray-50'>
+                                            <NavLink to="view" className='hover:text-blue-400'>View</NavLink>
                                         </div>
                                     </div>
                                 </div>

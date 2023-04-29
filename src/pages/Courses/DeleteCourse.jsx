@@ -20,7 +20,7 @@ export default function DeleteCourse(){
         <div>
             <div>     
                 <div className='p-5 pb-8'>
-                    <span className=" md:text-4xl text-2xl font-semibold whitespace-nowrap text-navbar">Review Course</span> 
+                    <span className=" md:text-4xl text-2xl font-semibold whitespace-nowrap text-navbar">Delete Course</span> 
                 </div>
                 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -83,7 +83,7 @@ export default function DeleteCourse(){
                     <div className="pb-4 pr-1 self-end">
                         <button onClick={handleTabClick} className="absolute left-1 underline text-navbar font-medium rounded-md px-5 py-2.5 mr-2 mb-2">CANCEL</button>
                             <div className='pb-3 pr-3 float-right'>
-                                <button onClick={handleExitDelete} className="shadow-md border-2 text-white bg-blue-800 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-md px-3 py-2.5 mr-2 mb-2 focus:outline-none "><span>PROCESS</span></button>
+                                <button onClick={handleExitDelete} className="shadow-md border-2 text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-md px-3 py-2.5 mr-2 mb-2 focus:outline-none "><span>DELETE</span></button>
                             </div>
                     </div>
                 </div>
@@ -103,15 +103,15 @@ export default function DeleteCourse(){
               </svg>
             </div>
             <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left">
-              <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">ARE YOU SURE YOU WANT TO MAKE CHANGES?</h3>
+              <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">ARE YOU SURE THAT YOU WANT TO DELETE?</h3>
               <div class="mt-2">
-                <p class="text-sm text-gray-500">Please click continue to proceed</p>
+                <p class="text-sm text-gray-500">Deleted data will not be able to recovered</p>
               </div>
             </div>
           </div>
         </div>
         <div class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-          <button type="button" onClick={handleClickDelete} class="inline-flex w-full justify-center rounded-md bg-navbar px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-900 sm:ml-3 sm:w-auto">Continue</button>
+          <button type="button" onClick={handleClickDelete} class="inline-flex w-full justify-center rounded-md bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-500 sm:ml-3 sm:w-auto">DELETE</button>
           <button type="button" onClick={handleCloseExitDelete} class="mt-3 inline-flex w-full justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto">Cancel</button>
         </div>
         </div>

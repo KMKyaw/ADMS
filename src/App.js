@@ -13,6 +13,8 @@ import Navbar from './layouts/Navbar'
 import UpdateCoures from './pages/Courses/UpdateCourse'
 import AddCourse from './pages/Courses/AddCourse'
 import ReviewCourse from './pages/Courses/ReviewCourse'
+import DeleteCourse from './pages/Courses/DeleteCourse'
+import ViewCourse from './pages/Courses/ViewCourse'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -25,6 +27,8 @@ const router = createBrowserRouter(
           <Route path='update' element={<UpdateCoures/>}/>
           <Route path='add' element={<AddCourse/>}/>
           <Route path='review' element={<ReviewCourse/>}/>
+          <Route path='delete' element={<DeleteCourse/>}/>
+          <Route path='view' element={<ViewCourse/>}/>
         </Route>
         <Route path='student' element={<Student/>}/>
       </Route>

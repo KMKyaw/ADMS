@@ -33,13 +33,13 @@ export default function Navbar(){
           <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-white rounded-lg bg- md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-navbar dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
             <li>
               {/* <NavLink to="dashboard" className="block py-2 pl-3 pr-4 text-gray-50 bg-blue-400 rounded md:bg-transparent md:text-blue-400 md:p-0" aria-current="page">Dashboard</NavLink> */}
-              <NavLink onClick={() => setIsOpen(!isOpen)} to="dashboard" className="block py-2 pl-3 pr-4 text-gray-50 rounded md:hover:bg-transparent md:border-0 md:hover:text-blue-400 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Dashboard</NavLink>
+              <NavLink onClick={() => setIsOpen(false)} to="dashboard" className="block py-2 pl-3 pr-4 text-gray-50 rounded md:hover:bg-transparent md:border-0 md:hover:text-blue-400 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Dashboard</NavLink>
             </li>
             <li>
-              <NavLink onClick={() => setIsOpen(!isOpen)} to="course" className="block py-2 pl-3 pr-4 text-gray-50 rounded md:hover:bg-transparent md:border-0 md:hover:text-blue-400 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Course</NavLink>
+              <NavLink onClick={() => setIsOpen(false)} to="course" className="block py-2 pl-3 pr-4 text-gray-50 rounded md:hover:bg-transparent md:border-0 md:hover:text-blue-400 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Course</NavLink>
             </li>
             <li>
-              <NavLink onClick={() => setIsOpen(!isOpen)} to="student" className="block py-2 pl-3 pr-4 text-gray-50 rounded md:hover:bg-transparent md:border-0 md:hover:text-blue-400 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Student</NavLink>
+              <NavLink onClick={() => setIsOpen(false)} to="student" className="block py-2 pl-3 pr-4 text-gray-50 rounded md:hover:bg-transparent md:border-0 md:hover:text-blue-400 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Student</NavLink>
             </li>
             <li>
               <a href="#" onClick={handleExit} className="text-red-400 block py-2 pl-3 pr-4 text-gray-900 rounded md:hover:bg-transparent md:border-0 md:hover:text-red-600 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Logout</a>

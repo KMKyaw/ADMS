@@ -44,7 +44,8 @@ export default function ViewCourse(){
                                     Course Description
                                 </th>
                                 <td class="px-6 py-4">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
+                                {/* Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.  */}
+                                afads
                                 </td>                            
                             </tr>
                             <tr class="border-b bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
@@ -67,7 +68,7 @@ export default function ViewCourse(){
                     </table>
                 </div>
 
-                <div className='sm:absolute relative sm:bottom-11 w-screen pb-2'>
+                <div className='absolute bottom-11 w-screen pb-2'>
                     <hr class="h-[3px] mt-8 mb-4 bg-navbar border-0"/>
                     <div className="pb-4">
                         <button onClick={handleTabClick} className="absolute left-1 underline text-navbar font-medium rounded-md px-5 py-2.5 mr-2 mb-2">CANCEL</button>

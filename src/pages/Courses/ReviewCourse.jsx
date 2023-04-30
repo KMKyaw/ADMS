@@ -1,5 +1,5 @@
 import { NavLink, useNavigate } from 'react-router-dom';
-export default function DeleteCourse(){
+export default function ReviewCourse(){
     const navigate = useNavigate();
     const handleTabClick = () => {
         navigate(`/navbar/course`);

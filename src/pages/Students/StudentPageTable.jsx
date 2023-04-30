@@ -11,10 +11,13 @@ export default function StudentPageTable(){
                 <thead class="text-xs text-gray-700 uppercase bg-navbar dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col" class="px-6 py-3 text-gray-50">
-                            Course ID
+                            Student ID
                         </th>
                         <th scope="col" class="px-6 py-3 text-gray-50">
-                            Course Title
+                            First Name
+                        </th>
+                        <th scope="col" class="px-6 py-3 text-gray-50">
+                            GPAX
                         </th>
                         <th scope="col" class="px-6 py-3 text-gray-50">
                             Action
@@ -24,10 +27,13 @@ export default function StudentPageTable(){
                 <tbody>
                     <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            CSC105
+                            65130500249
                         </th>
                         <td class="px-6 py-4">
-                            Introduction to Web Development
+                            John
+                        </td>
+                        <td class="px-6 py-4">
+                            3.75
                         </td>
                         <td class="px-6 py-4 font-extrabold	text-navbar text-lg">
                             <button onClick={handleClick}>...</button>
@@ -50,10 +56,13 @@ export default function StudentPageTable(){
                     </tr>
                     <tr class="bg-[#EDEFFE] border-b dark:bg-gray-900 dark:border-gray-700">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            GEN111
+                            65130600342
                         </th>
                         <td class="px-6 py-4">
-                            Beauty of Life
+                            William
+                        </td>
+                        <td class="px-6 py-4">
+                            3.91
                         </td>
                         <td class="px-6 py-4 font-extrabold	text-navbar text-lg">
                             ...
@@ -61,10 +70,13 @@ export default function StudentPageTable(){
                     </tr>
                     <tr class="border-b bg-white dark:bg-gray-800 dark:border-gray-700">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            CSC102
+                            64130500924
                         </th>
                         <td class="px-6 py-4">
-                            Introduction to Programming
+                            Mira
+                        </td>
+                        <td class="px-6 py-4">
+                            2.75
                         </td>
                         <td class="px-6 py-4 font-extrabold	text-navbar text-lg">
                             ...
@@ -72,10 +84,13 @@ export default function StudentPageTable(){
                     </tr>
                     <tr class="border-b bg-[#EDEFFE] dark:bg-gray-800 dark:border-gray-700">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            CSC103
+                            64130600342
                         </th>
                         <td class="px-6 py-4">
-                            Networking and Data Communication
+                            Roti
+                        </td>
+                        <td class="px-6 py-4">
+                            3.43
                         </td>
                         <td class="px-6 py-4 font-extrabold	text-navbar text-lg">
                             ...
@@ -83,10 +98,13 @@ export default function StudentPageTable(){
                     </tr>
                     <tr>
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            GEN101
+                            65130500298
                         </th>
                         <td class="px-6 py-4">
-                            Physical Education
+                            Tchaikovsky
+                        </td>
+                        <td class="px-6 py-4">
+                            2.5
                         </td>
                         <td class="px-6 py-4 font-extrabold	text-navbar text-lg">
                             ...

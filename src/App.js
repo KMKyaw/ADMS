@@ -16,6 +16,10 @@ import DeleteCourse from './pages/Courses/DeleteCourse'
 import ViewCourse from './pages/Courses/ViewCourse'
 import Student from './pages/Students/Student'
 import AddStudent from './pages/Students/AddStudent'
+import UpdateStudent from './pages/Students/UpdateStudent'
+import ReviewStudent from './pages/Students/ReviewStudent'
+import DeleteStudent from './pages/Students/DeleteStudent'
+import ViewStudent from './pages/Students/ViewStudent'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -34,6 +38,10 @@ const router = createBrowserRouter(
         <Route path='student'>
           <Route index element={<Student/>}/>
           <Route path='add' element={<AddStudent/>}/>
+          <Route path='update' element={<UpdateStudent/>}/>
+          <Route path='review' element={<ReviewStudent/>}/>
+          <Route path='delete' element={<DeleteStudent/>}/>
+          <Route path='view' element={<ViewStudent/>}/>
         </Route>
       </Route>
     </Route>

@@ -1,4 +1,6 @@
 import { NavLink, useNavigate } from 'react-router-dom';
+import StudentViewTable from '../Students/StudentViewTable';
+
 export default function ViewCourse(){
     const navigate = useNavigate();
     const handleTabClick = () => {
@@ -67,14 +69,32 @@ export default function ViewCourse(){
                         </tbody>
                     </table>
                 </div>
-
-                <div className='absolute bottom-11 w-screen pb-2'>
+                
+                <div className='py-7 px-4'>
+                    <div className="pt-4">
+                        <div className="m-auto md:w-[99%] w-[96%] border-2 relative shadow-md">
+                            <div className="pt-4">
+                                <div className='grid grid-cols-2'>
+                                    <div>
+                                        <p className="p-4 pt-3 md:text-2xl text-xl font-bold whitespace-nowrap text-navbar">Enrolled Students</p>
+                                    </div>
+                                </div>
+                                <div className="p-4">
+                                    <StudentViewTable/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div className='relative bottom-10 w-screen pb-2'>
                     <hr class="h-[3px] mt-8 mb-4 bg-navbar border-0"/>
                     <div className="pb-4">
                         <button onClick={handleTabClick} className="absolute left-1 underline text-navbar font-medium rounded-md px-5 py-2.5 mr-2 mb-2">CANCEL</button>
                     </div>
                 </div>
             </div>
+
             
         </div>
     );

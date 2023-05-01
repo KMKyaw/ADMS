@@ -1,4 +1,16 @@
+import { useNavigate } from "react-router-dom";
+
 export default function Footer(){
+    const navigate = useNavigate();
+    const handleDashboard = () => {
+        navigate(`/navbar/dashboard`);
+    }
+    const handleCourse = () => {
+        navigate(`/navbar/course`);
+    }
+    const handleStudent = () => {
+        navigate(`/navbar/student`);
+    }
     return(
         
     <footer class="bg-navbar shadow dark:bg-gray-900">
@@ -10,16 +22,13 @@ export default function Footer(){
                 </a>
                 <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-50 sm:mb-0 dark:text-gray-400">
                     <li>
-                        <a href="#" class="mr-4 hover:underline md:mr-6 ">Dashboard</a>
+                        <button onClick={handleDashboard} class="mr-4 hover:underline md:mr-6 ">Dashboard</button>
                     </li>
                     <li>
-                        <a href="#" class="mr-4 hover:underline md:mr-6">Course</a>
+                        <button onClick={handleCourse} class="mr-4 hover:underline md:mr-6 ">Course</button>
                     </li>
                     <li>
-                        <a href="#" class="mr-4 hover:underline md:mr-6 ">Student</a>
-                    </li>
-                    <li>
-                        <a href="#" class="hover:underline">Privacy Policy</a>
+                        <button onClick={handleStudent} class="mr-4 hover:underline md:mr-6 ">Student</button>
                     </li>
                 </ul>
             </div>

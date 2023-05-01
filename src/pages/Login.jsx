@@ -5,9 +5,11 @@ export default function Login(){
     const [activeTab, setActiveTab] = useState("home");
     const navigate = useNavigate();
   
-    const handleTabClick = (tab) => {
-      setActiveTab(tab);
-      navigate(`/${tab}/dashboard`);
+    const handleTabClick = () => {
+        navigate(`/loading`);
+        setTimeout(() => {
+        navigate(`/navbar/dashboard`);
+        }, 2000);
     };
 
     return(
@@ -26,7 +28,7 @@ export default function Login(){
                             <label for="password" class="text-center text-xl font-semibold whitespace-nowrap text-gray-50">Your password</label>
                             <input type="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Password" required/>
                         </div>
-                        <button onClick={() => handleTabClick("navbar")} type="submit" class="text-white bg-transparent hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm block w-full w-auto px-5 py-2.5 text-center border">Login</button>
+                        <button type="submit" onClick={handleTabClick} class="text-white bg-transparent hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm block w-full w-auto px-5 py-2.5 text-center border">Login</button>
                         </form>
                     </div>
                 </div>

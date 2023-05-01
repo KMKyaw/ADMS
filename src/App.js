@@ -20,11 +20,13 @@ import UpdateStudent from './pages/Students/UpdateStudent'
 import ReviewStudent from './pages/Students/ReviewStudent'
 import DeleteStudent from './pages/Students/DeleteStudent'
 import ViewStudent from './pages/Students/ViewStudent'
+import Loading from './pages/Loading'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/">
       <Route index element={<Login/>}/>
+      <Route path='loading' element={<Loading/>}/>
       <Route path='navbar' element={<Navbar/>}>
         <Route path='dashboard' element={<Dashboard/>}/>
         <Route path='course'>

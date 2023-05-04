@@ -2,9 +2,10 @@ import {
   createBrowserRouter, 
   createRoutesFromElements,
   Route, 
-  RouterProvider
+  RouterProvider,
+  Navigate
 } from 'react-router-dom'
-
+import React from 'react'
 import Login from "./pages/Login"
 import Dashboard from "./pages/Dashboard"
 import Course from "./pages/Courses/Course"
@@ -21,11 +22,10 @@ import ReviewStudent from './pages/Students/ReviewStudent'
 import DeleteStudent from './pages/Students/DeleteStudent'
 import ViewStudent from './pages/Students/ViewStudent'
 import Loading from './pages/Loading'
-
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/">
-      <Route index element={<Login/>}/>
+    <React.Fragment>
+      <Route path='login'element={<Login/>} index/>
       <Route path='loading' element={<Loading/>}/>
       <Route path='navbar' element={<Navbar/>}>
         <Route path='dashboard' element={<Dashboard/>}/>
@@ -46,7 +46,8 @@ const router = createBrowserRouter(
           <Route path='view' element={<ViewStudent/>}/>
         </Route>
       </Route>
-    </Route>
+      <Route path='/' element={<Navigate to='/login' replace />} />
+    </React.Fragment>
   )
 )
 

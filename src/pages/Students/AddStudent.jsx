@@ -31,6 +31,14 @@ export default function AddStudent(){
     };
     const [selected, setSelected] = useState(false);
     const handleChange = (selectedOption) => {
+    const arr = [selectedOption.length];
+    console.log(selectedOption);
+    for(var i=0;i<selectedOption.length;i++){
+        arr[i] = selectedOption[i].label;
+    }
+    for(var i=0;i<selectedOption.length;i++){
+        console.log(arr[i]);
+    }
     const isSelected = Array.isArray(selectedOption) ? selectedOption.length > 0 : Boolean(selectedOption);
     console.log(isSelected);
     setSelected(isSelected);
@@ -57,6 +65,7 @@ export default function AddStudent(){
         }else{
             window.alert("Please fill the Course field")
         }
+
     }
     const navigate = useNavigate();
     const handleTabClick = () => {

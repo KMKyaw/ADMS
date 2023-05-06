@@ -110,7 +110,20 @@ app.post("/student/post"), (req,res) => {
     const lastname = req.body.lastname;
     const studentid = req.body.studentid;
     const gpax = req.body.gpax;
-    
+    const course = req.body.course;
+    var sql = `INSERT INTO courses (firstname, lastname, studentid, gpax, course) VALUES (?, ?, ?, ?, ?)`;
+    connection.query(sql, [firstname, lastname, studentid, gpax, course], (err, rows) => {
+        if(err) {
+            return res.json({
+                success: false,
+                error: err
+            });
+        }
+        return res.json({
+            success: true,
+            message: "Student has successfully registered"
+        })
+    })    
 }
 
 //get student data

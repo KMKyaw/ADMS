@@ -105,14 +105,15 @@ app.post("/register", (req, res) => {
 });
 
 //post student data
-app.post("/student/post"), (req,res) => {
+app.post("/student/addData", (req,res) => {
     const firstname = req.body.firstname;
     const lastname = req.body.lastname;
     const studentid = req.body.studentid;
     const gpax = req.body.gpax;
     const course = req.body.course;
-    var sql = `INSERT INTO courses (firstname, lastname, studentid, gpax, course) VALUES (?, ?, ?, ?, ?)`;
-    connection.query(sql, [firstname, lastname, studentid, gpax, course], (err, rows) => {
+    const courseid = course.substring(0, 6);
+    var sql = `INSERT INTO students (firstname, lastname, studentid, gpax, course, courseid) VALUES (?, ?, ?, ?, ?, ?)`;
+    connection.query(sql, [firstname, lastname, studentid, gpax, course, courseid], (err, rows) => {
         if(err) {
             return res.json({
                 success: false,
@@ -124,12 +125,95 @@ app.post("/student/post"), (req,res) => {
             message: "Student has successfully registered"
         })
     })    
-}
+});
 
 //get student data
-
+app.get("/student/getData", async(req,res) => {
+    const promisePool = connection.promise();
+    // query database using promises
+    const [rows,fields] = await promisePool.query("SELECT * FROM students"); 
+    if(rows.length>0){
+        console.log(rows[0].studentid);
+    }
+    return res.json({
+        success : true,
+        data : rows,
+    })
+});
 
 //post course data
-
+app.post("/course/addData", (req,res) => {
+    const courseid = req.body.courseid;
+    const coursetitle = req.body.coursetitle;
+    const coursedes = req.body.coursedes;
+    const max = req.body.max;
+    const lecturer = req.body.lecturer;
+    var sql = `INSERT INTO courses (courseid, coursetitle, coursedes, max, lecturer) VALUES (?, ?, ?, ?, ?)`;
+    connection.query(sql, [courseid, coursetitle, coursedes, max, lecturer], (err, rows) => {
+        if(err) {
+            return res.json({
+                success: false,
+                error: err
+            });
+        }
+        return res.json({
+            success: true,
+            message: "Course has successfully registered"
+        })
+    })    
+});
 
 //get course data
+app.get("/course/getData", async(req,res) => {
+    const promisePool = connection.promise();
+    // const courseId = "CSC400";
+    const queryStringCourse = "SELECT * FROM courses";
+    // query database using promises and passing the variable as an array
+    const [rows,fields] = await promisePool.query(queryStringCourse); 
+    // const [rows,fields] = await promisePool.query(queryStringCourse, [courseId]); 
+    if(rows.length>0){
+        console.log(rows[0].studentid);
+    }
+    return res.json({
+        success : true,
+        data : rows,
+    })
+});
+
+//get specific course data
+app.get("/course/getData/specific", async(req,res) => {
+    const promisePool = connection.promise();
+    const courseId = req.body.courseId;
+    const queryStringCourse = "SELECT * FROM courses WHERE courseid = ?";
+    // query database using promises and passing the variable as an array
+    const [courserows,coursefields] = await promisePool.query(queryStringCourse, [courseId]); 
+
+    const queryStringStudent = "SELECT * FROM students WHERE courseid = ?";
+    const [studentrows,studentfields] = await promisePool.query(queryStringStudent, [courseId]); 
+
+    if(courserows.length>0){
+        console.log(courserows[0].studentid);
+    }
+    return res.json({
+        success : true,
+        coursedata : courserows,
+        studentdata : studentrows
+    })
+});
+
+//get specific student data
+app.get("/student/getData/specific", async(req,res) => {
+    const promisePool = connection.promise();
+    const studentId = req.body.studentId;
+    const queryStringCourse = "SELECT * FROM students WHERE studentid = ?";
+    // query database using promises and passing the variable as an array
+    const [studentrows,coursefields] = await promisePool.query(queryStringCourse, [studentId]);  
+
+    if(studentrows.length>0){
+        console.log(studentrows[0].studentid);
+    }
+    return res.json({
+        success : true,
+        studentdata : studentrows
+    })
+});

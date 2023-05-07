@@ -1,12 +1,34 @@
-import React from 'react';
+import {React,useState, useEffect} from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, BarElement, CategoryScale, LinearScale} from 'chart.js';
 import { Bar, Doughnut } from 'react-chartjs-2';
 import CourseTable from './Courses/CourseTable';
 import StudentTable from './Students/StudentTable';
 import Footer from './Footer';
+import Axios from "axios";
 ChartJS.register(ArcElement, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
 
-export const data = {
+
+
+export default function Dashboard() {
+  const [studentData, setStudentData] = useState([]);
+const getData = async () => {
+  try {
+    const response = await Axios.get("http://localhost:5000/student/getData");
+    console.log("OK");
+    setStudentData(response.data.data);
+    console.log(response.data.data);
+    return response;
+  } catch (error) {
+    console.error(error.message);
+    console.error(error.response.status);
+    throw error;
+  }
+};
+useEffect(() => {
+  console.log(studentData);
+}, [studentData]);
+
+ const data = {
   labels: ['Course'],
   datasets: [
     {
@@ -25,7 +47,7 @@ export const data = {
 };
 
 
-export const Bardata = {
+ const Bardata = {
   labels: ['2.0', '2.25 ', '2.5', '2.75', '3.0', '3.25', '3.5', '3.75', '4.0'],
   datasets: [
     {
@@ -36,7 +58,7 @@ export const Bardata = {
     }
   ]
 }
-export const Studentdata = {
+ const Studentdata = {
   labels: ['Studnt'],
   datasets: [
     {
@@ -107,9 +129,8 @@ const Studentplugins = [{
 }]
 
 
-export default function Dashboard() {
   return (
-    <div>
+    <div onLoad={getData}>
       <div className='py-7 px-8'>
       <span className="md:text-4xl text-2xl font-semibold whitespace-nowrap text-navbar">Dashboard</span>
       </div>
@@ -187,7 +208,7 @@ export default function Dashboard() {
                 <p className="md:text-2xl text-xl font-bold whitespace-nowrap text-navbar">Top Students</p>
               </div>
               <div className="p-2">
-              <StudentTable/>
+              {studentData && <StudentTable data={studentData} />}
               </div>
           </div>
         </div>

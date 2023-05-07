@@ -40,8 +40,8 @@ const router = createBrowserRouter(
         <Route path='student'>
           <Route index element={<Student/>}/>
           <Route path='add' element={<AddStudent/>}/>
-          <Route path='update' element={<UpdateStudent/>}/>
-          <Route path='review' element={<ReviewStudent/>}/>
+          <Route path='/navbar/student/update/:studentid' element={<UpdateStudent />} />
+          <Route path='review/:courseID/:courseTitle/:courseDesc/:maxStudents/:coures' element={<ReviewStudent/>}/>
           <Route path='delete' element={<DeleteStudent/>}/>
           <Route path='view' element={<ViewStudent/>}/>
         </Route>

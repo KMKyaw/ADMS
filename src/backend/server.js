@@ -131,7 +131,7 @@ app.post("/student/addData", (req,res) => {
 app.get("/student/getData", async(req,res) => {
     const promisePool = connection.promise();
     // query database using promises
-    const [rows,fields] = await promisePool.query("SELECT * FROM students"); 
+    const [rows,fields] = await promisePool.query("SELECT DISTINCT studentid, firstname, gpax FROM students"); 
     if(rows.length>0){
         console.log(rows[0].studentid);
     }
@@ -202,7 +202,7 @@ app.get("/course/getData/specific", async(req,res) => {
 });
 
 //get specific student data
-app.get("/student/getData/specific", async(req,res) => {
+app.post("/student/getData/specific", async(req,res) => {
     const promisePool = connection.promise();
     const studentId = req.body.studentId;
     const queryStringCourse = "SELECT * FROM students WHERE studentid = ?";

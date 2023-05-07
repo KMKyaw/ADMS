@@ -1,16 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import CoursePageTable from './StudentPageTable.jsx';
 import { NavLink } from "react-router-dom";
 import Footer from '../Footer.jsx';
+import Axios from "axios";
 export default function Student(){
     const [isOpen, setIsOpen] = useState(false);
 
     const handleClick = () => {
         setIsOpen(!isOpen);
       }
+    const [studentData, setStudentData] = useState([]);
+    const getData = async () => {
+    try {
+        const response = await Axios.get("http://localhost:5000/student/getData");
+        console.log("OK");
+        setStudentData(response.data.data);
+        console.log(response.data.data);
+        return response;
+    } catch (error) {
+        console.error(error.message);
+        console.error(error.response.status);
+        throw error;
+    }
+    };
+    useEffect(() => {
+    console.log(studentData);
+    }, [studentData]);
 
     return(
-        <div>
+        <div onLoad={getData}>
             <div className='py-7 px-4'>
                 <span className="p-2 md:text-4xl text-2xl font-semibold whitespace-nowrap text-navbar">Manage Student</span>
                 <div className="pt-4">
@@ -41,7 +59,7 @@ export default function Student(){
                                 </div>
                             </div>
                             <div className="p-4">
-                                <CoursePageTable/>
+                                {studentData && <CoursePageTable data={studentData} />}
                             </div>
                         </div>
                     </div>

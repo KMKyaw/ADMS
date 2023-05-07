@@ -1,5 +1,7 @@
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate,useParams } from 'react-router-dom';
 export default function ReviewStudent(){
+    const { courseID, courseTitle, courseDesc, maxStudents, coures } = useParams();
+    console.log(courseID);
     const navigate = useNavigate();
     const handleTabClick = () => {
         navigate(`/navbar/student`);
@@ -40,7 +42,7 @@ export default function ReviewStudent(){
                                     First Name
                                 </th>
                                 <td class="px-6 py-4">
-                                    John Doe
+                                    {courseID}
                                 </td>                            
                             </tr>
                             <tr class="border-b bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
@@ -48,7 +50,7 @@ export default function ReviewStudent(){
                                     Last Name
                                 </th>
                                 <td class="px-6 py-4">
-                                    Bush
+                                    {courseTitle}
                                 </td>                            
                             </tr>
                             <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
@@ -56,7 +58,7 @@ export default function ReviewStudent(){
                                     Student ID
                                 </th>
                                 <td class="px-6 py-4">
-                                    65130500249
+                                    {courseDesc}
                                 </td>                            
                             </tr>
                             <tr class="border-b bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
@@ -64,7 +66,7 @@ export default function ReviewStudent(){
                                     GPAX
                                 </th>
                                 <td class="px-6 py-4">
-                                    3.91
+                                    {maxStudents}
                                 </td>                            
                             </tr>
                             <tr>
@@ -72,8 +74,12 @@ export default function ReviewStudent(){
                                     Courses
                                 </th>
                                 <td class="px-6 py-4">
-                                    CSC105 - Introduction to Web Development <br/>CSC102 - Introduction to Programming
+                                    {coures}
+                                {/* {coures.map((item) => (
+                                    <><span>{item}</span><br /></>
+                                ))} */}
                                 </td>
+
                             </tr>
                         </tbody>
                     </table>

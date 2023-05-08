@@ -217,3 +217,41 @@ app.post("/student/getData/specific", async(req,res) => {
         studentdata : studentrows
     })
 });
+
+//update specific student data
+app.put("/student/update/specific", async(req,res) => {
+    const firstname = req.body.firstname;
+    const lastname = req.body.lastname;
+    const gpax = req.body.gpax;
+    const studentid = req.body.studentid;
+    var sql = `UPDATE students SET firstname = ?, lastname = ?, gpax = ? WHERE studentid = ?`;
+    connection.query(sql, [firstname, lastname, gpax, studentid], (err, rows) => {
+        if(err) {
+            return res.json({
+                success: false,
+                error: err
+            });
+        }
+        return res.json({
+            success: true,
+            message: "Student has successfully updated"
+        })
+    })    
+}) 
+
+app.delete("/student/delete/specific", async(req,res) => { 
+    const studentid = req.body.studentid;
+    var sql = `DELETE FROM students WHERE studentid = ?`;
+    connection.query(sql, [studentid], (err, rows) => {
+        if(err) {
+            return res.json({
+                success: false,
+                error: err
+            });
+        }
+        return res.json({
+            success: true,
+            message: "Student has successfully deleted"
+        })
+    })    
+})

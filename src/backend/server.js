@@ -239,6 +239,7 @@ app.put("/student/update/specific", async(req,res) => {
     })    
 }) 
 
+//delete specifc student data
 app.delete("/student/delete/specific", async(req,res) => { 
     const studentid = req.body.studentid;
     var sql = `DELETE FROM students WHERE studentid = ?`;

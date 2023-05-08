@@ -62,10 +62,21 @@ export default function StudentPageTable({ data }) {
                       </NavLink>
                       </div>
                       <div className='border-b-2 px-5 py-1 border-gray-50'>
-                        <NavLink to="delete" className='hover:text-blue-400'>Delete</NavLink>
+                      <NavLink
+                        to={`/navbar/student/delete/${item.studentid}`}
+                        className='hover:text-blue-400'
+                      >
+                        Delete
+                        </NavLink>
+                        
                       </div>
                       <div className='border-b-2 px-5 py-1 border-gray-50'>
-                        <NavLink to="view" className='hover:text-blue-400'>View</NavLink>
+                      <NavLink
+                        to={`/navbar/student/view/${item.studentid}`}
+                        className='hover:text-blue-400'
+                      >
+                        View
+                        </NavLink>
                       </div>
                     </div>
                   </div>

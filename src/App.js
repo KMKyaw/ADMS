@@ -22,6 +22,7 @@ import ReviewStudent from './pages/Students/ReviewStudent'
 import DeleteStudent from './pages/Students/DeleteStudent'
 import ViewStudent from './pages/Students/ViewStudent'
 import Loading from './pages/Loading'
+import AddReviewStudent from './pages/Students/AddReviewStudent'
 const router = createBrowserRouter(
   createRoutesFromElements(
     <React.Fragment>
@@ -42,7 +43,8 @@ const router = createBrowserRouter(
           <Route path='add' element={<AddStudent/>}/>
           <Route path='/navbar/student/update/:studentid' element={<UpdateStudent />} />
           <Route path='review/:courseID/:courseTitle/:courseDesc/:maxStudents/:coures' element={<ReviewStudent/>}/>
-          <Route path='delete' element={<DeleteStudent/>}/>
+          <Route path='/navbar/student/delete/:studentid' element={<DeleteStudent/>}/>
+          <Route path='addreview/:courseID/:courseTitle/:courseDesc/:maxStudents/:coures' element={<AddReviewStudent/>}/>
           <Route path='view' element={<ViewStudent/>}/>
         </Route>
       </Route>

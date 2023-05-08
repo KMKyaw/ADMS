@@ -57,7 +57,7 @@ export default function Login() {
                   for="name"
                   class="text-center text-xl font-semibold whitespace-nowrap text-gray-50"
                 >
-                  User ID
+                  User ID <span className="text-[10px]">(adminuser1, adminuser2)</span>
                 </label>
                 <input
                   id="name"
@@ -72,7 +72,7 @@ export default function Login() {
                   for="password"
                   class="text-center text-xl font-semibold whitespace-nowrap text-gray-50"
                 >
-                  Your password
+                  Your password <span className="text-[10px]">(CS@SIT1, CS@SIT2)</span>
                 </label>
                 <input
                   type="password"

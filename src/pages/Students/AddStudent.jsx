@@ -1,15 +1,53 @@
 import { useState, useEffect } from "react";
 import { NavLink, useNavigate} from "react-router-dom";
 import Select from "react-select";
+import Axios from "axios";
 
 export default function AddStudent(){
     const [formValid, setFormValid] = useState(false);
-    const options = [
-        { value: "CSC102", label: "CSC102 - Introduction to Programming" },
-        { value: "CSC105", label: "CSC105 - Introduction to Web Development" },
-        { value: "GEN111", label: "GEN111 - Physical Education" },
-      ];
+    const [courseID, setCourseID] = useState("");
+    const [courseTitle, setCourseTitle] = useState("");
+    const [courseDesc, setCourseDesc] = useState("");
+    const [maxStudents, setMaxStudents] = useState(0);
+    const [courses, setCourses] = useState([]);
+    const [coursesData, setCoursesData] = useState([]);
+    const [defaultValue, setdefaultValue] = useState([]);
+    const getData = async () => {
+        try {
+          const response = await Axios.get("http://localhost:5000/course/getData");
+          console.log(response);
+          setCoursesData(response.data.data);
+          return response;
+        } catch (error) {
+          console.error(error.message);
+          console.error(error.response.status);
+          throw error;
+        }
+      };
+    useEffect(() => {
+        getData();
+    }, []);
 
+    useEffect(() => {
+        console.log("THIS IS IT");
+        console.log(coursesData);
+        if (coursesData.length > 0) {
+            const temp = [];
+            for(var i=0;i<coursesData.length;i++){
+                temp[i] = coursesData[i].courseid + " - " + coursesData[i].coursetitle;
+            }
+            setCourses(temp);
+            var i = 0;
+            const dvalue = courses.map((course) => {
+                i++;
+                return { value: i, label: course };
+            });
+            setdefaultValue(dvalue);
+            console.log(courses);
+            console.log(dvalue); 
+          }
+      }, [coursesData]);
+      
     const customStyles = {
         control: (provided) => ({
           ...provided,
@@ -31,24 +69,25 @@ export default function AddStudent(){
     };
     const [selected, setSelected] = useState(false);
     const handleChange = (selectedOption) => {
-    const arr = [selectedOption.length];
-    console.log(selectedOption);
-    for(var i=0;i<selectedOption.length;i++){
-        arr[i] = selectedOption[i].label;
-    }
-    for(var i=0;i<selectedOption.length;i++){
-        console.log(arr[i]);
-    }
-    const isSelected = Array.isArray(selectedOption) ? selectedOption.length > 0 : Boolean(selectedOption);
-    console.log(isSelected);
-    setSelected(isSelected);
+        const arr = [selectedOption.length];
+        console.log(selectedOption);
+        console.log(selectedOption.length);
+        for(var i=0;i<selectedOption.length;i++){
+            arr[i] = selectedOption[i].label;
+        }
+        for(var i=0;i<selectedOption.length;i++){
+            console.log(arr[i]);
+        }
+        const isSelected = Array.isArray(selectedOption) ? selectedOption.length > 0 : Boolean(selectedOption);
+        console.log("The select box is select : " + isSelected);
+        setSelected(isSelected);
     };
 
     useEffect(() => {
-    const courseID = document.getElementById("course_id").value;
-    const courseTitle = document.getElementById("course_title").value;
-    const courseDesc = document.getElementById("course_desc").value;
-    const maxStudents = document.getElementById("max_students").value;
+    setCourseID(document.getElementById("course_id").value);
+    setCourseTitle(document.getElementById("course_title").value);
+    setCourseDesc(document.getElementById("course_desc").value);
+    setMaxStudents(document.getElementById("max_students").value);
 
     if (courseID && courseTitle && courseDesc && maxStudents && selected) {
         setFormValid(true);
@@ -57,11 +96,16 @@ export default function AddStudent(){
         setFormValid(false);
         console.log("Form Invalid");
     }
-    }, [selected]);
+    console.log(courseID);
+    console.log(courseTitle);
+    console.log(courseDesc);
+    console.log(maxStudents);
+    console.log(selected);
+    }, [courseID, courseTitle, courseDesc, maxStudents, selected]);
 
     const handleReviewTabClickAdd = () =>{
         if(formValid == true){
-            navigate(`/navbar/student/review`);
+            navigate(`/navbar/student/addreview/${courseID}/${courseTitle}/${courseDesc}/${maxStudents}/${coursesData.join(" , ")}`);
         }else{
             window.alert("Please fill the Course field")
         }
@@ -102,7 +146,7 @@ export default function AddStudent(){
                         <div class="mb-6">
                             <div className="px-4 md:pt-4">
                                 <label for="first_name" class="block mb-2 text-[20px] font-medium whitespace-nowrap text-navbar">Courses</label>
-                                <Select onChange={handleChange} id="lecturer" options={options} autoFocus={true} isMulti styles={customStyles} placeholder="Enter Number"/>
+                                <Select onChange={handleChange} id="lecturer" options={defaultValue} autoFocus={true} isMulti styles={customStyles} placeholder="Enter Number"/>
                             </div>
                         </div>
                         <hr class="h-[3px] mt-8 mb-4 bg-navbar border-0"/>

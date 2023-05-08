@@ -105,13 +105,13 @@ export default function UpdateStudent(){
                         </div>
                         <div class="mb-6">
                             <div className="px-4 md:pt-4">
-                                <label for="first_name" class="block mb-2 text-[20px] font-medium whitespace-nowrap text-navbar">Student ID</label>
-                                <input onChange={(e) => setCourseDesc(e.target.value)} defaultValue={studentData.length ? studentData[0].studentid : ''} type="text" id="course_desc" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Description..." required/>
+                                <label for="first_name" class="block mb-2 text-[20px] font-medium whitespace-nowrap text-navbar" >Student ID<span className="text-red-500 text-sm">(not allowed to change)</span></label>
+                                <input disabled={true} onChange={(e) => setCourseDesc(e.target.value)} defaultValue={studentData.length ? studentData[0].studentid : ''} type="text" id="course_desc" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Description..." required/>
                             </div>
                         </div> 
                         <div class="mb-6">
                             <div className="px-4 md:pt-4">
-                                <label for="first_name" class="block mb-2 text-[20px] font-medium whitespace-nowrap text-navbar">GPAX</label>
+                                <label for="first_name" class="block mb-2 text-[20px] font-medium whitespace-nowrap text-navbar">GPAX </label>
                                 <input onChange={(e) => setMaxStudents(e.target.value)} defaultValue={studentData.length ? studentData[0].gpax : ''} step="any" type="number" id="max_students" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter Number" required/>
                             </div>
                         </div>  

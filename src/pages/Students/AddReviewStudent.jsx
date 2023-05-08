@@ -1,7 +1,7 @@
 import { NavLink, useNavigate,useParams } from 'react-router-dom';
 import Axios from "axios";
 
-export default function ReviewStudent(){
+export default function AddReviewStudent(){
     const { courseID, courseTitle, courseDesc, maxStudents, coures } = useParams();
     console.log(courseID);
     const navigate = useNavigate();

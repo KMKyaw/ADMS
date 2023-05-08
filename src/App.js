@@ -44,7 +44,7 @@ const router = createBrowserRouter(
           <Route path='/navbar/student/update/:studentid' element={<UpdateStudent />} />
           <Route path='review/:courseID/:courseTitle/:courseDesc/:maxStudents/:coures' element={<ReviewStudent/>}/>
           <Route path='/navbar/student/delete/:studentid' element={<DeleteStudent/>}/>
-          <Route path='addreview/:courseID/:courseTitle/:courseDesc/:maxStudents/:coures' element={<AddReviewStudent/>}/>
+          <Route path='addreview/:courseID/:courseTitle/:courseDesc/:maxStudents/:selectCourses/:coursesCount' element={<AddReviewStudent/>}/>
           <Route path='view' element={<ViewStudent/>}/>
         </Route>
       </Route>

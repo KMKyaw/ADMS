@@ -12,6 +12,7 @@ export default function AddStudent(){
     const [courses, setCourses] = useState([]);
     const [coursesData, setCoursesData] = useState([]);
     const [defaultValue, setdefaultValue] = useState([]);
+    const [selectCourses, setSelectedCourses] = useState([]);
     const getData = async () => {
         try {
           const response = await Axios.get("http://localhost:5000/course/getData");
@@ -69,8 +70,8 @@ export default function AddStudent(){
     };
     const [selected, setSelected] = useState(false);
     const handleChange = (selectedOption) => {
+        
         const arr = [selectedOption.length];
-        console.log(selectedOption);
         console.log(selectedOption.length);
         for(var i=0;i<selectedOption.length;i++){
             arr[i] = selectedOption[i].label;
@@ -78,6 +79,7 @@ export default function AddStudent(){
         for(var i=0;i<selectedOption.length;i++){
             console.log(arr[i]);
         }
+        setSelectedCourses(arr);
         const isSelected = Array.isArray(selectedOption) ? selectedOption.length > 0 : Boolean(selectedOption);
         console.log("The select box is select : " + isSelected);
         setSelected(isSelected);
@@ -88,7 +90,6 @@ export default function AddStudent(){
     setCourseTitle(document.getElementById("course_title").value);
     setCourseDesc(document.getElementById("course_desc").value);
     setMaxStudents(document.getElementById("max_students").value);
-
     if (courseID && courseTitle && courseDesc && maxStudents && selected) {
         setFormValid(true);
         console.log("Form Valid");
@@ -105,7 +106,8 @@ export default function AddStudent(){
 
     const handleReviewTabClickAdd = () =>{
         if(formValid == true){
-            navigate(`/navbar/student/addreview/${courseID}/${courseTitle}/${courseDesc}/${maxStudents}/${coursesData.join(" , ")}`);
+            console.log("YOU HAVE SELECTED" + selectCourses);
+            navigate(`/navbar/student/addreview/${courseID}/${courseTitle}/${courseDesc}/${maxStudents}/${selectCourses.join(" , ")}/${selectCourses.length}`);
         }else{
             window.alert("Please fill the Course field")
         }

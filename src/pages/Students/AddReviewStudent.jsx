@@ -2,8 +2,9 @@ import { NavLink, useNavigate,useParams } from 'react-router-dom';
 import Axios from "axios";
 
 export default function AddReviewStudent(){
-    const { courseID, courseTitle, courseDesc, maxStudents, coures } = useParams();
-    console.log(courseID);
+    const { courseID, courseTitle, courseDesc, maxStudents, selectCourses, coursesCount} = useParams();
+    const coursesData = selectCourses.split(" , ");
+    console.log(coursesCount);
     const navigate = useNavigate();
     const handleTabClick = () => {
         navigate(`/navbar/student`);
@@ -14,23 +15,26 @@ export default function AddReviewStudent(){
       };
     
       const handleClickDelete = async () => {
+        
         console.log("StudentID is");
-
-        try {
-          const response = await Axios.put("http://localhost:5000/student/update/specific", {
-            firstname: courseID,
-            lastname: courseTitle,
-            gpax: maxStudents,
-            studentid: courseDesc
-          });
-          console.log(response);
-          console.log("DONE");
-          navigate('/navbar/student');
-          return response;
-        } catch (error) {
-          console.error(error.message);
-          console.error(error.response.status);
-          throw error;
+        for(var x=0; x<coursesCount; x++){
+            try {
+                const response = await Axios.post("http://localhost:5000/student/addData", {
+                  firstname: courseID,
+                  lastname: courseTitle,
+                  gpax: maxStudents,
+                  studentid: courseDesc,
+                  course : coursesData[x],
+                  courseid : coursesData[x].substring(0, 6)
+                });
+                console.log(response);
+                console.log("DONE");
+                navigate('/navbar/student');
+              } catch (error) {
+                console.error(error.message);
+                console.error(error.response.status);
+                throw error;
+              }
         }
       };
       
@@ -94,7 +98,7 @@ export default function AddReviewStudent(){
                                     Courses
                                 </th>
                                 <td class="px-6 py-4">
-                                    {coures}
+                                    {selectCourses}
                                 
                                 </td>
 

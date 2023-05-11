@@ -184,28 +184,21 @@ app.get("/course/getData", async (req, res) => {
 });
 
 //get specific course data
-app.get("/course/getData/specific", async (req, res) => {
+app.post("/course/getData/specific", async (req, res) => {
   const promisePool = connection.promise();
-  const courseId = req.body.courseid;
+  const courseid = req.body.courseid;
   const queryStringCourse = "SELECT * FROM courses WHERE courseid = ?";
   // query database using promises and passing the variable as an array
-  const [courserows, coursefields] = await promisePool.query(
+  const [studentrows, coursefields] = await promisePool.query(
     queryStringCourse,
-    [courseId]
+    [courseid]
   );
 
-  const queryStringStudent = "SELECT * FROM students WHERE courseid = ?";
-  const [studentrows, studentfields] = await promisePool.query(
-    queryStringStudent,
-    [courseId]
-  );
-
-  if (courserows.length > 0) {
-    console.log(courserows[0].studentid);
+  if (studentrows.length > 0) {
+    console.log(studentrows[0].studentid);
   }
   return res.json({
     success: true,
-    coursedata: courserows,
     studentdata: studentrows,
   });
 });
@@ -219,6 +212,26 @@ app.post("/student/getData/specific", async (req, res) => {
   const [studentrows, coursefields] = await promisePool.query(
     queryStringCourse,
     [studentId]
+  );
+
+  if (studentrows.length > 0) {
+    console.log(studentrows[0].studentid);
+  }
+  return res.json({
+    success: true,
+    studentdata: studentrows,
+  });
+});
+
+//get specific student data baseed on courseid
+app.post("/student/getData/specific/courseid", async (req, res) => {
+  const promisePool = connection.promise();
+  const courseid = req.body.courseid;
+  const queryStringCourse = "SELECT * FROM students WHERE courseid = ?";
+  // query database using promises and passing the variable as an array
+  const [studentrows, coursefields] = await promisePool.query(
+    queryStringCourse,
+    [courseid]
   );
 
   if (studentrows.length > 0) {
@@ -265,6 +278,71 @@ app.delete("/student/delete/specific", async (req, res) => {
     return res.json({
       success: true,
       message: "Student has successfully deleted",
+    });
+  });
+});
+
+//delete specifc course data
+app.delete("/course/delete/specific", async (req, res) => {
+  const courseid = req.body.courseid;
+  var sql = `DELETE FROM courses WHERE courseid = ?`;
+  connection.query(sql, [courseid], (err, rows) => {
+    if (err) {
+      return res.json({
+        success: false,
+        error: err,
+      });
+    }
+  });
+
+  var sqlStudent = `DELETE FROM students WHERE courseid = ?`;
+  connection.query(sqlStudent, [courseid], (err, rows) => {
+    if (err) {
+      return res.json({
+        success: false,
+        error: err,
+      });
+    }
+    return res.json({
+      success: true,
+      message: "Course has successfully deleted",
+    });
+  });
+});
+
+//update specific course data
+app.patch("/course/update/specific", async (req, res) => {
+  const courseid = req.body.courseid;
+  const coursetitle = req.body.coursetitle;
+  const coursedes = req.body.coursedes;
+  const max = req.body.max;
+  const lecturer = req.body.lecturer;
+  let result = courseid.concat(" - ", coursetitle);
+  console.log(courseid);
+  var sql = `UPDATE courses SET courseid = ?, coursetitle = ?, coursedes = ?, max = ?, lecturer = ? WHERE courseid = ?`;
+  var sqlStudent = `UPDATE students SET course = ?, courseid = ? WHERE courseid = ?`;
+  connection.query(
+    sql,
+    [courseid, coursetitle, coursedes, max, lecturer, courseid],
+    (err, rows) => {
+      if (err) {
+        return res.json({
+          success: false,
+          error: err,
+        });
+      }
+    }
+  );
+  connection.query(sqlStudent, [result, courseid, courseid], (err, rows) => {
+    if (err) {
+      return res.json({
+        success: false,
+        error: err,
+      });
+    }
+    return res.json({
+      success: true,
+      message: "Course has successfully updated",
     });
   });
 });

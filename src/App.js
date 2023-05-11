@@ -38,13 +38,22 @@ const router = createBrowserRouter(
             element={<UpdateCoures />}
           />
           <Route path="add" element={<AddCourse />} />
-          <Route path="review" element={<ReviewCourse />} />
-          <Route path="delete" element={<DeleteCourse />} />
+          <Route
+            path="review/:courseID/:courseTitle/:courseDesc/:maxStudents/:lecturer"
+            element={<ReviewCourse />}
+          />
+          <Route
+            path="/navbar/course/delete/:courseid"
+            element={<DeleteCourse />}
+          />
           <Route
             path="addreview/:courseID/:courseTitle/:courseDesc/:maxStudents/:lecturer"
             element={<AddCourseReview />}
           />
-          <Route path="view" element={<ViewCourse />} />
+          <Route
+            path="/navbar/course/view/:courseid"
+            element={<ViewCourse />}
+          />
         </Route>
         <Route path="student">
           <Route index element={<Student />} />

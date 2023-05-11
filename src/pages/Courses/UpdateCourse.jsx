@@ -7,22 +7,21 @@ export default function UpdateCoures() {
   const [courseTitle, setCourseTitle] = useState("Doe");
   const [courseDesc, setCourseDesc] = useState("65130500249");
   const [maxStudents, setMaxStudents] = useState(3.91);
-  const [coures, setCourses] = useState([]);
   const { courseid } = useParams();
   const [studentData, setStudentData] = useState([]);
-  const [defaultValue, setdefaultValue] = useState([]);
   const [lecturer, setLecturer] = useState("");
   const getData = async () => {
     try {
-      const response = await Axios.get(
+      const response = await Axios.post(
         "http://localhost:5000/course/getData/specific",
         {
           courseid: courseid,
         }
       );
-      console.log("OKOKOKKOKOK");
-      console.log(response);
-      setStudentData(response.data);
+      console.log(response.data.studentdata);
+      setStudentData(response.data.studentdata);
+      console.log("Here");
+      console.log(studentData);
       return response;
     } catch (error) {
       console.error(error.message);
@@ -33,39 +32,29 @@ export default function UpdateCoures() {
   useEffect(() => {
     getData();
   }, []);
-
+  useEffect(() => {
+    console.log("Updated studentData:", studentData[0]);
+  }, [studentData]);
   useEffect(() => {
     if (studentData.length > 0) {
-      setCourseID(studentData[0].firstname);
-      setCourseTitle(studentData[0].lastname);
-      setCourseDesc(studentData[0].studentid);
-      setMaxStudents(studentData[0].gpax);
+      setCourseID(studentData[0].courseid);
+      setCourseTitle(studentData[0].coursetitle);
+      setCourseDesc(studentData[0].coursedes);
+      setMaxStudents(studentData[0].max);
       setLecturer(studentData[0].lecturer);
-      const temp = [];
-      for (var i = 0; i < studentData.length; i++) {
-        temp[i] = studentData[i].course;
-      }
-      setCourses(temp);
-      const dvalue = coures.map((course) => {
-        return { label: course };
-      });
-      setdefaultValue(dvalue);
-      console.log(coures);
-      console.log(dvalue);
     }
   }, [studentData]);
 
   const handleReviewTabClick = () => {
     if (
-      courseID !== studentData[0].firstname ||
-      courseTitle !== studentData[0].lastname ||
-      courseDesc !== studentData[0].studentid ||
-      maxStudents !== studentData[0].gpax
+      courseID !== studentData[0].courseid ||
+      courseTitle !== studentData[0].coursetitle ||
+      courseDesc !== studentData[0].coursedes ||
+      maxStudents !== studentData[0].max ||
+      lecturer !== studentData[0].lecturer
     ) {
       navigate(
-        `/navbar/student/review/${courseID}/${courseTitle}/${courseDesc}/${maxStudents}/${coures.join(
-          " , "
-        )}`
+        `/navbar/course/review/${courseID}/${courseTitle}/${courseDesc}/${maxStudents}/${lecturer}`
       );
     } else {
       window.alert("No changes detected.");
@@ -74,7 +63,7 @@ export default function UpdateCoures() {
 
   const navigate = useNavigate();
   const handleTabClick = () => {
-    navigate(`/navbar/student`);
+    navigate(`/navbar/course`);
   };
   return (
     <div className="pt-7 px-4">
@@ -98,7 +87,9 @@ export default function UpdateCoures() {
                   id="first_name"
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   placeholder="CSC/GEN..."
-                  defaultValue="CSC105"
+                  defaultValue={
+                    studentData.length ? studentData[0].courseid : ""
+                  }
                 />
               </div>
               <div className="px-4 md:pt-4">
@@ -114,7 +105,9 @@ export default function UpdateCoures() {
                   id="first_name"
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Title..."
-                  defaultValue="Introduction to Web Development"
+                  defaultValue={
+                    studentData.length ? studentData[0].coursetitle : ""
+                  }
                   required
                 />
               </div>
@@ -134,7 +127,7 @@ export default function UpdateCoures() {
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Description..."
                   defaultValue={
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                    studentData.length ? studentData[0].coursedes : ""
                   }
                   required
                 />
@@ -154,7 +147,7 @@ export default function UpdateCoures() {
                   id="first_name"
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Enter Number"
-                  defaultValue={"46"}
+                  defaultValue={studentData.length ? studentData[0].max : ""}
                   required
                 />
               </div>
@@ -173,7 +166,9 @@ export default function UpdateCoures() {
                   id="first_name"
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   placeholder="Name..."
-                  defaultValue={"Prof. John Doe"}
+                  defaultValue={
+                    studentData.length ? studentData[0].lecturer : ""
+                  }
                   required
                 />
               </div>

@@ -1,9 +1,53 @@
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate,useParams } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import Axios from "axios";
 export default function ViewStudent(){
+    const {studentid} = useParams();
+    const [courseID, setCourseID] = useState("");
+    const [courseTitle, setCourseTitle] = useState("");
+    const [courseDesc, setCourseDesc] = useState("");
+    const [maxStudents, setMaxStudents] = useState(0);
+    const [coures, setCourses] = useState([]);
+    const [studentData, setStudentData] = useState([]);
+    const getData = async () => {
+        try {
+          const response = await Axios.post("http://localhost:5000/student/getData/specific", {
+            studentId : studentid
+          });
+          console.log(studentid);
+          setStudentData(response.data.studentdata);
+          return response;
+        } catch (error) {
+          console.error(error.message);
+          console.error(error.response.status);
+          throw error;
+        }
+      };
+    useEffect(() => {
+        getData();
+    }, []);
+
+    useEffect(() => {
+        if (studentData.length > 0) {
+            setCourseID(studentData[0].firstname);
+            setCourseTitle(studentData[0].lastname);
+            setCourseDesc(studentData[0].studentid);
+            setMaxStudents(studentData[0].gpax);
+            const temp = [];
+            for(var i=0;i<studentData.length;i++){
+                temp[i] = studentData[i].course;
+            }
+            setCourses(temp);
+            const dvalue = coures.map((course) => {
+                return { label: course };
+            });
+          }
+      }, [studentData]);
     const navigate = useNavigate();
     const handleTabClick = () => {
         navigate(`/navbar/student`);
       };
+
     return(
         <div>
             <div>
@@ -28,7 +72,7 @@ export default function ViewStudent(){
                                     First Name
                                 </th>
                                 <td class="px-6 py-4">
-                                    John Doe
+                                    {courseID}
                                 </td>                            
                             </tr>
                             <tr class="border-b bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
@@ -36,7 +80,7 @@ export default function ViewStudent(){
                                     Last Name
                                 </th>
                                 <td class="px-6 py-4">
-                                    Bush
+                                    {courseTitle}
                                 </td>                            
                             </tr>
                             <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
@@ -44,7 +88,7 @@ export default function ViewStudent(){
                                     Student ID
                                 </th>
                                 <td class="px-6 py-4">
-                                    65130500249
+                                    {courseDesc}
                                 </td>                            
                             </tr>
                             <tr class="border-b bg-gray-50 dark:bg-gray-800 dark:border-gray-700">
@@ -52,7 +96,7 @@ export default function ViewStudent(){
                                     GPAX
                                 </th>
                                 <td class="px-6 py-4">
-                                    3.91
+                                    {maxStudents}
                                 </td>                            
                             </tr>
                             <tr>
@@ -60,7 +104,7 @@ export default function ViewStudent(){
                                     Courses
                                 </th>
                                 <td class="px-6 py-4">
-                                    CSC105 - Introduction to Web Development <br/>CSC102 - Introduction to Programming
+                                    {coures.join(" , ")}
                                 </td>
                             </tr>
                         </tbody>

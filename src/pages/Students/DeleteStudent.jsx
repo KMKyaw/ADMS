@@ -131,7 +131,7 @@ export default function DeleteStudent(){
                                     Courses
                                 </th>
                                 <td class="px-6 py-4">
-                                    CSC105 - Introduction to Web Development <br/>CSC102 - Introduction to Programming
+                                    {coures.join (" , ")}
                                 </td>
                             </tr>
                         </tbody>

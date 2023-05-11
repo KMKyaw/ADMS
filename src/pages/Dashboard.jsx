@@ -11,12 +11,12 @@ ChartJS.register(ArcElement, Tooltip, Legend, BarElement, CategoryScale, LinearS
 
 export default function Dashboard() {
   const [studentData, setStudentData] = useState([]);
+
 const getData = async () => {
   try {
     const response = await Axios.get("http://localhost:5000/student/getData");
     console.log("OK");
     setStudentData(response.data.data);
-    console.log(response.data.data);
     return response;
   } catch (error) {
     console.error(error.message);
@@ -25,7 +25,7 @@ const getData = async () => {
   }
 };
 useEffect(() => {
-  console.log(studentData);
+  changeDiagram();
 }, [studentData]);
 
  const data = {
@@ -63,7 +63,7 @@ useEffect(() => {
   datasets: [
     {
       label: '# of Votes',
-      data: [45, 14],
+      data: [studentData.length, 50],
       backgroundColor: [
         'rgba(168,	210,	109, 0.5)',
         'rgba(252,	239,	233, 1)',
@@ -92,6 +92,10 @@ const Studentoptions = {
   },
 };
 
+const changeDiagram = () => {
+
+}
+
 const plugins = [{
   beforeDraw: function(chart) {
    var width = chart.width,
@@ -119,9 +123,12 @@ const Studentplugins = [{
        var fontSize = (height / 160).toFixed(2);
        ctx.font = "bold " + fontSize + "em sans-serif";
        ctx.textBaseline = "top";
-       var text = "76%",
-       textX = Math.round((width - ctx.measureText(text).width) / 2),
-       textY = height / 2.25;
+       var student = 4; // Example student count
+      var total = 50; // Example total count
+      var percentage = (student / total * 100).toFixed(2);
+      var text = percentage + "%";
+       var textX = Math.round((width - ctx.measureText(text).width) / 2)
+       var textY = height / 2.25;
        ctx.fillStyle = "#373B61";
        ctx.fillText(text, textX, textY);
        ctx.save();
@@ -159,7 +166,7 @@ const Studentplugins = [{
                     <Doughnut className='p-5' data={Studentdata} options={Studentoptions} plugins={Studentplugins} responsive maintainAspectRatio={false} aspectRatio={1}/>
                   </div>
                   <div className='relative md:top-[33%] top-[25%]'>
-                    <p className="pb-3 md:text-3xl text-xl font-bold whitespace-nowrap text-navbar">87</p>
+                    <p className="pb-3 md:text-3xl text-xl font-bold whitespace-nowrap text-navbar">{studentData.length}</p>
                     <p className="md:text-2xl text-lg font-semibold whitespace-nowrap text-navbar">Students Registered</p>
                   </div>
                 </div>

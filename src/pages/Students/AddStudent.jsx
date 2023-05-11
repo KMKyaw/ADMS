@@ -126,29 +126,29 @@ export default function AddStudent(){
                         <div class="grid gap-6 mb-6 md:grid-cols-2">
                             <div className="px-4 pt-4">
                                 <label for="first_name" class="block mb-2 text-[20px] font-medium whitespace-nowrap text-navbar">First Name</label>
-                                <input type="text" id="course_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="CSC/GEN..." required/>
+                                <input type="text" id="course_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter First Name" required/>
                             </div>
                             <div className="px-4 md:pt-4">
                                 <label for="first_name" class="block mb-2 text-[20px] font-medium whitespace-nowrap text-navbar">Last Name</label>
-                                <input type="text" id="course_title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Title..." required/>
+                                <input type="text" id="course_title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter Last Name" required/>
                             </div>
                         </div>
                         <div class="mb-6">
                             <div className="px-4 md:pt-4">
                                 <label for="first_name" class="block mb-2 text-[20px] font-medium whitespace-nowrap text-navbar">Student ID</label>
-                                <input type="text" id="course_desc" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Description..." required/>
+                                <input type="text" id="course_desc" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter 11-digits ID" required/>
                             </div>
                         </div> 
                         <div class="mb-6">
                             <div className="px-4 md:pt-4">
                                 <label for="first_name" class="block mb-2 text-[20px] font-medium whitespace-nowrap text-navbar">GPAX</label>
-                                <input step="any" type="number" id="max_students" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter Number" required/>
+                                <input step="any" type="number" id="max_students" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter GPAX" required/>
                             </div>
                         </div>  
                         <div class="mb-6">
                             <div className="px-4 md:pt-4">
                                 <label for="first_name" class="block mb-2 text-[20px] font-medium whitespace-nowrap text-navbar">Courses</label>
-                                <Select onChange={handleChange} id="lecturer" options={defaultValue} autoFocus={true} isMulti styles={customStyles} placeholder="Enter Number"/>
+                                <Select onChange={handleChange} id="lecturer" options={defaultValue} autoFocus={true} isMulti styles={customStyles} placeholder="Select Courses"/>
                             </div>
                         </div>
                         <hr class="h-[3px] mt-8 mb-4 bg-navbar border-0"/>

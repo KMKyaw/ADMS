@@ -50,8 +50,8 @@ export default function Dashboard() {
       setCourseL(courseData.length);
       setStudentL(studentData.length);
     },
-    [studentData],
-    [courseData]
+    studentData,
+    courseData
   );
   useEffect(() => {
     changeDiagram();
@@ -173,8 +173,8 @@ export default function Dashboard() {
         var fontSize = (height / 160).toFixed(2);
         ctx.font = "bold " + fontSize + "em sans-serif";
         ctx.textBaseline = "top";
-        var student = 4; // Example student count
-        var total = 50; // Example total count
+        var student = 1; // Example student count
+        var total = 10; // Example total count
         var percentage = ((student / total) * 100).toFixed(2);
         var text = percentage + "%";
         var textX = Math.round((width - ctx.measureText(text).width) / 2);
@@ -307,7 +307,7 @@ export default function Dashboard() {
             </p>
           </div>
           <div className="p-2">
-            <CourseTable />
+            {courseData && <CourseTable data={courseData} />}
           </div>
         </div>
       </div>

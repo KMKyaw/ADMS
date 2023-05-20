@@ -1,70 +1,532 @@
-# Getting Started with Create React App
+# Academic Data Management System (ADMS)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**Academic data management system (or) ADMS** is the system that helps the university admission department to manage and maintain the student data. Users can create courses and add/ delete/ edit students to those courses. They can also set the grades for the students according to the individual course.
 
-## Available Scripts
+## Functions
 
-In the project directory, you can run:
+- Add/ Delete/ Update courses
+- Add/ Delete/ Update students to the available courses
+- Display course and student statistics
 
-### `npm start`
+## Database Schema
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+![Database Schema for ADMS](https://www.pinterest.com/pin/695313629991595483/)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## To run the frontend and backend in developing mode
 
-### `npm test`
+First, you need to install npm modules
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    npm i
 
-### `npm run build`
+Afterwards, frontend can be run by typing
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    npm start
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+For backend, please redirect to the backend folder by opening a new terminal and typing
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+    cd src/backend
+    node server.js
 
-### `npm run eject`
+If the server is being run correctly, the following should be appeared in terminal
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+    Server is running on port 5000
+    Database is connected
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## API endpoints
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+#### URL
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+<!-- Method /endpoint -->
 
-## Learn More
+`POST /login`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<!-- change to Request <TYPE> If you use parameters or query -->
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+#### Request Body
 
-### Code Splitting
+| Parameter | Type   | Description    |
+| --------- | ------ | -------------- |
+| username  | String | Admin name     |
+| password  | String | Admin password |
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Example
+`{
+	"username" : "adminuser1",
+	"password" : "CS@SIT1"
+}`
 
-### Analyzing the Bundle Size
+<!-- The response if success -->
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+#### Success
 
-### Making a Progressive Web App
+`{
+success: true,
+message: "Authentication Success",
+}`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+<!--Status code (normally 200) -->
 
-### Advanced Configuration
+`Status code : 200`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+---
 
-### Deployment
+#### URL
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+`POST /register`
 
-### `npm run build` fails to minify
+<!-- change to Request <TYPE> If you use parameters or query -->
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+#### Request Body
+
+| Parameter | Type   | Description    |
+| --------- | ------ | -------------- |
+| username  | String | Admin name     |
+| password  | String | Admin password |
+
+Example
+`{
+	"username" : "adminuser1",
+	"password" : "CS@SIT1"
+}`
+
+<!-- The response if success -->
+
+#### Success
+
+`{
+success: true,
+message: "User registered successfully",
+}`
+
+<!--Status code (normally 200) -->
+
+`Status code : 200`
+
+---
+
+#### URL
+
+`POST /student/addData`
+
+<!-- change to Request <TYPE> If you use parameters or query -->
+
+#### Request Body
+
+| Parameter | Type   | Description                 |
+| --------- | ------ | --------------------------- |
+| firstname | String | student first name          |
+| lastname  | String | student last name           |
+| studentid | String | student id                  |
+| gpax      | String | student accumulated gpa     |
+| course    | String | enrolled courses            |
+| courseid  | String | Id(s) of enrolled course(s) |
+
+Example
+`{
+	"firstname" : "John",
+	"lastname" : "Doe",
+	"studentid" : "65130500249",
+	"gpax" : "3.91",
+	"course" : "Introduction to Programming",
+	"courseid" : "CSC120"
+}`
+
+<!-- The response if success -->
+
+#### Success
+
+`{
+success: true,
+message: "Student has successfully registered",
+}`
+
+<!--Status code (normally 200) -->
+
+`Status code : 200`
+
+---
+
+#### URL
+
+`GET /student/getData`
+
+<!-- The response if success -->
+
+#### Success
+
+`{
+success: true,
+data: {
+[
+{ "studentid":  "65130500249",
+"firstname":  "Geroge",
+"gpax":  4
+},
+{
+"studentid":  "65340123421",
+"firstname":  "Billy",
+"gpax":  3.75
+}
+]
+},
+}`
+
+<!--Status code (normally 200) -->
+
+`Status code : 200`
+
+---
+
+#### URL
+
+`POST /course/addData`
+
+<!-- change to Request <TYPE> If you use parameters or query -->
+
+#### Request Body
+
+| Parameter   | Type   | Description              |
+| ----------- | ------ | ------------------------ |
+| courseid    | String | course id                |
+| coursetitle | String | course name              |
+| coursedes   | String | course description       |
+| max         | int    | maximum limit of student |
+| lecturer    | String | lecturer name            |
+
+Example
+`{
+	"courseid" : "GEN255",
+	"coursetitle" : "Miracle of Thinking",
+	"coursedes" : "Thinking about decisions",
+	"max" : "35",
+	"lecturer" : "Julia",
+}`
+
+<!-- The response if success -->
+
+#### Success
+
+`{
+success: true,
+message: "Course has successfully registered",
+}`
+
+<!--Status code (normally 200) -->
+
+`Status code : 200`
+
+---
+
+#### URL
+
+`GET /course/getData`
+
+<!-- change to Request <TYPE> If you use parameters or query -->
+
+<!-- The response if success -->
+
+#### Success
+
+`{
+success: true,
+data: {
+[
+{
+"courseid":  "CSC102",
+"coursetitle":  "Introduction to Programming",
+"coursedes":  "Java ",
+"max":  45,
+"lecturer":  "Bush"
+},
+{
+"courseid":  "CSC200",
+"coursetitle":  "Introduction to Game Dev",
+"coursedes":  "Building games with Unity",
+"max":  42,
+"lecturer":  "Jarkata"
+}
+]
+},
+}`
+
+<!--Status code (normally 200) -->
+
+`Status code : 200`
+
+---
+
+#### URL
+
+`POST /course/getData/specific`
+
+<!-- change to Request <TYPE> If you use parameters or query -->
+
+#### Request Body
+
+| Parameter | Type   | Description |
+| --------- | ------ | ----------- |
+| courseid  | String | course id   |
+
+Example
+`{
+	"courseid" : "GEN111"
+}`
+
+<!-- The response if success -->
+
+#### Success
+
+`{
+success: true,
+studentdata : {
+[
+{
+"courseid":  "CSC200",
+"coursetitle":  "Introduction to Game Dev",
+"coursedes":  "Building games with Unity",
+"max":  42,
+"lecturer":  "Jarkata"
+}
+]
+}
+}`
+
+<!--Status code (normally 200) -->
+
+`Status code : 200`
+
+---
+
+#### URL
+
+`POST /student/getData/specific`
+
+<!-- change to Request <TYPE> If you use parameters or query -->
+
+#### Request Body
+
+| Parameter | Type   | Description |
+| --------- | ------ | ----------- |
+| studentId | String | student id  |
+
+Example
+`{
+	"studentId" : "65130500249"
+}`
+
+<!-- The response if success -->
+
+#### Success
+
+`{
+success: true,
+studentdata : {
+[
+{
+"firstname":  "Geroge",
+"lastname":  "White",
+"studentid":  "65130500249",
+"gpax":  4,
+"course":  "CSC200 - Introduction to Game Dev",
+"courseid":  "CSC200"
+}
+]
+}
+}`
+
+<!--Status code (normally 200) -->
+
+`Status code : 200`
+
+---
+
+#### URL
+
+`POST /student/getData/specific/courseid`
+
+<!-- change to Request <TYPE> If you use parameters or query -->
+
+#### Request Body
+
+| Parameter | Type   | Description |
+| --------- | ------ | ----------- |
+| courseid  | String | course id   |
+
+Example
+`{
+	"courseid" : "GEN111"
+}`
+
+<!-- The response if success -->
+
+#### Success
+
+`{
+success: true,
+studentdata : {
+[
+{
+"firstname":  "Geroge",
+"lastname":  "White",
+"studentid":  "65130500249",
+"gpax":  4,
+"course":  "CSC200 - Introduction to Game Dev",
+"courseid":  "CSC200"
+},
+{
+"firstname":  "Billy",
+"lastname":  "Joe",
+"studentid":  "65340123421",
+"gpax":  3.75,
+"course":  "CSC200 - Introduction to Game Dev",
+"courseid":  "CSC200"
+}
+]
+}
+}`
+
+<!--Status code (normally 200) -->
+
+`Status code : 200`
+
+---
+
+#### URL
+
+`PUT /student/update/specific`
+
+<!-- change to Request <TYPE> If you use parameters or query -->
+
+#### Request Body
+
+| Parameter | Type   | Description             |
+| --------- | ------ | ----------------------- |
+| firstname | String | student first name      |
+| lastname  | String | student last name       |
+| studentid | String | student id              |
+| gpax      | String | student accumulated gpa |
+
+Example
+`{
+	"firstname" : "John",
+	"lastname" : "Doe",
+	"studentid" : "65130500249",
+	"gpax" : "4.0",
+}`
+
+<!-- The response if success -->
+
+#### Success
+
+`{
+success: true,
+message: "Student has successfully updated",
+}`
+
+<!--Status code (normally 200) -->
+
+`Status code : 200`
+
+---
+
+#### URL
+
+`DELETE /student/delete/specific`
+
+<!-- change to Request <TYPE> If you use parameters or query -->
+
+#### Request Body
+
+| Parameter | Type   | Description |
+| --------- | ------ | ----------- |
+| studentid | String | student id  |
+
+Example
+`{
+	"studentid" : "65130500249",
+}`
+
+<!-- The response if success -->
+
+#### Success
+
+`{
+success: true,
+message: "Student has successfully deleted",
+}`
+
+<!--Status code (normally 200) -->
+
+`Status code : 200`
+
+---
+
+#### URL
+
+`DELETE /course/delete/specific`
+
+<!-- change to Request <TYPE> If you use parameters or query -->
+
+#### Request Body
+
+| Parameter | Type   | Description |
+| --------- | ------ | ----------- |
+| courseid  | String | course id   |
+
+Example
+`{
+	"courseid" : "GEN255",
+}`
+
+<!-- The response if success -->
+
+#### Success
+
+`{
+success: true,
+message: "Course has successfully deleted",
+}`
+
+<!--Status code (normally 200) -->
+
+`Status code : 200`
+
+---
+
+#### URL
+
+`PATCH /course/update/specific`
+
+<!-- change to Request <TYPE> If you use parameters or query -->
+
+#### Request Body
+
+| Parameter   | Type   | Description              |
+| ----------- | ------ | ------------------------ |
+| courseid    | String | course id                |
+| coursetitle | String | course name              |
+| coursedes   | String | course description       |
+| max         | int    | maximum limit of student |
+| lecturer    | String | lecturer name            |
+
+Example
+`{
+	"courseid" : "GEN255",
+	"coursetitle" : "Miracle of Thinking",
+	"coursedes" : "Thinking about decisions",
+	"max" : "35",
+	"lecturer" : "Julia",
+}`
+
+<!-- The response if success -->
+
+#### Success
+
+`{
+success: true,
+message: "Course has successfully updated",
+}`
+
+<!--Status code (normally 200) -->
+
+`Status code : 200`

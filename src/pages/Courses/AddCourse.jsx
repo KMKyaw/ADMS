@@ -56,7 +56,7 @@ export default function AddCourse() {
   };
   const navigate = useNavigate();
   const handleTabClick = () => {
-    navigate(`/navbar/student`);
+    navigate(`/navbar/course`);
   };
   return (
     <div className="pt-7 px-4">
